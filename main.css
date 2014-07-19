@@ -1,0 +1,57 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+body{
+  background-image: url('http://subtlepatterns.com/patterns/congruent_pentagon.png'); 
+  padding-top: 60px;
+  padding-bottom: 30px;
+  font-family: "Droid Sans", sans-serif;
+}
+
+#nav{
+  background-color: rgba(255, 255, 255, .72);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  padding: 5px 30px 10px;
+  z-index: 10;
+}
+
+#container {
+  width: 100%;
+}
+
+#myContent {
+  width: 80%;
+  position: relative;
+}
+
+#myContent li {
+  width: 220px;
+}
+
+#logo {
+  float: left;
+}
+
+#searchBox{
+  clear: both;
+  float: left;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.cards {
+  padding: 10px 10px;
+  background-color: #ffffff;
+  border-radius: 5px;
+}
+
+.cards h5 {
+  margin-top: 5px;
+}

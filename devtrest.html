@@ -1,0 +1,91 @@
+<html ng-app="devterestApp">
+<head>
+  <title>Devterest * All Day Fantasy Shopping, All Day</title>
+  <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+  <nav id="nav" ng-controller="SearchController">
+    <span id="logo"><h3>DEVTEREST.</h3></span>
+    <span id="searchBox">search: <input type="text" ng-model="search.data" /></span>
+  </nav>
+
+  <div ng-controller="CardsController" id="container">
+    <ul id="myContent">
+      <li class="" ng-repeat="card in cards | filter:search.data">
+        <div class="cards">
+          <img src="{{ card.imgUrl }}">
+          <h5>{{ card.description }}</h5>
+          <h6>#{{ card.category }}</h6>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script type="text/javascript" src="jquery.wookmark.min.js"></script>
+  <script>
+    var app = angular.module('devterestApp', [])
+      .factory("searchService", function(){
+        return {sharedObject: {data: null } }
+    });
+    
+    app.controller('CardsController', function($scope, searchService){
+      $scope.search = searchService.sharedObject;
+      $scope.data = [
+        {"id": 1, "imgUrl":"http://images2.wookmark.com/428890_wookmark.jpg", "description":"Twee Carles mustache, artisan salvia street art sriracha Shoreditch occupy blog.", "category":"office"},
+        {"id": 2, "imgUrl":"http://images3.wookmark.com/429296_wookmark.jpg", "description":"Literally banjo messenger bag, Marfa Blue Bottle artisan fingerstache Cosby sweater narwhal bespoke tofu street art pork belly whatever.", "category":"transportaion"},
+        {"id": 3, "imgUrl":"http://images3.wookmark.com/428834_wookmark.jpg", "description":"High Life readymade beard craft beer Williamsburg.", "category":"trains"},
+        {"id": 4, "imgUrl":"http://images1.wookmark.com/429450_wookmark.jpg", "description":"Hoodie McSweeney's aesthetic fanny pack Echo Park Helvetica food truck bespoke, chia keytar Thundercats.", "category":"thedarkside"},
+        {"id": 5, "imgUrl":"http://images3.wookmark.com/429071_wookmark.jpg", "description":"Bicycle rights +1 yr, flexitarian authentic hashtag Carles pork belly fanny pack chia artisan mustache. ", "category":"grandma"},
+        {"id": 6, "imgUrl":"http://images1.wookmark.com/429084_wookmark.jpg", "description":"Sustainable seitan put a bird on it bicycle rights plaid Tonx.", "category":"office"},
+        {"id": 7, "imgUrl":"http://images2.wookmark.com/429028_wookmark.jpg", "description":"Vice try-hard art party organic High Life.", "category":"cosmos"},
+        {"id": 8, "imgUrl":"http://images3.wookmark.com/429713_wookmark.jpg", "description":"Freegan organic tote bag master cleanse seitan readymade, fashion axe gluten-free you probably haven't heard of them fanny pack mumblecore lomo asymmetrical 90's.", "category":"startups"},
+        {"id": 9, "imgUrl":"http://images1.wookmark.com/429441_wookmark.png", "description":"Cornhole authentic asymmetrical ennui, Williamsburg craft beer 3 wolf moon.", "category":"mothernature"},
+        {"id": 10, "imgUrl":"http://images1.wookmark.com/430095_wookmark.jpg", "description":"Synth pickled mixtape fanny pack, bicycle rights asymmetrical meh gluten-free brunch PBR cray lomo biodiesel twee.", "category":"Bond007"},
+      ];
+      $scope.cards = shuffleArray($scope.data);
+    })
+    .controller('SearchController', function($scope, searchService){
+      $scope.search = searchService.sharedObject;
+    });
+
+    $(document).ready(function(){
+      $('#container').mousemove(function(){
+        $('#myContent li').wookmark();
+      })
+    });
+
+    // -> Fisher–Yates shuffle algorithm
+    var shuffleArray = function(array) {
+      var m = array.length, t, i;
+
+      // While there remain elements to shuffle
+      while (m) {
+        // Pick a remaining element…
+        i = Math.floor(Math.random() * m--);
+
+        // And swap it with the current element.
+        t = array[m];
+        array[m] = array[i];
+        array[i] = t;
+      }
+
+      return array;
+    };
+
+    // http://images2.wookmark.com/428890_wookmark.jpg
+    // http://images3.wookmark.com/429296_wookmark.jpg
+    // http://images3.wookmark.com/428834_wookmark.jpg
+    // http://images1.wookmark.com/429450_wookmark.jpg
+    // http://images3.wookmark.com/429071_wookmark.jpg
+    // http://images1.wookmark.com/429084_wookmark.jpg
+    // http://images2.wookmark.com/429028_wookmark.jpg
+    // http://images3.wookmark.com/429713_wookmark.jpg
+    // http://images1.wookmark.com/429441_wookmark.png
+    // http://images1.wookmark.com/430095_wookmark.jpg
+  </script>
+</body>
+</html>
+
